@@ -24,3 +24,17 @@ watch.createMonitor('./src', function (monitor) {
         deepForceUpdate(rootInstance);
     });
 });
+
+watch.createMonitor('./assets', function (monitor) {
+    monitor.on("changed", function (f, curr, prev) {
+        console.log(f);
+        var links = document.getElementsByTagName("link");
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+
+            if (link.href.indexOf("css") > -1) {
+                link.href = link.href + "?id=" + new Date().getMilliseconds();
+            }
+        }
+    });
+});
