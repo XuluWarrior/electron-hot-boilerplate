@@ -1,4 +1,4 @@
-//require('jsx-hook')({harmony: true});
+require('jsx-hook')({harmony: true});
 
 const React = require('react');
 const ReactDOM = require('react-dom');
