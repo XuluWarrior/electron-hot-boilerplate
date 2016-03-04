@@ -7,7 +7,7 @@ module.exports = class App extends React.Component {
     return React.createElement(
       'h1',
       null,
-      'Hello'
+      'Hello 2'
     );
   }
 }
