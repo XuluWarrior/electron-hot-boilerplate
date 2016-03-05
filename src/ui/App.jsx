@@ -8,7 +8,7 @@ module.exports = class App extends React.Component {
     render() {
         return <div>
           <h1>Hey!</h1>
-          <Component />
+          <Component text='Hello' />
         </div>
     }
 

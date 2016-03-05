@@ -48,6 +48,8 @@ module.exports = function instrument(source) {
                 // RESOLVE_ARG
                 retNode.arguments[0].arguments[1] = esprima.parse("require.resolve('" + requireDeclaration + "')").body[0].expression;
 
+                retNode.arguments = node.arguments;
+
                 //Prevent further traversal and ComponentWrapper wrapping
                 this.skip();
                 return retNode;
