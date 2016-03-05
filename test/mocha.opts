@@ -1,0 +1,5 @@
+-u bdd
+--recursive ./test/**/*.jsx
+--full-trace
+--reporter spec
+--compilers .:src/electron-hot/compiler
