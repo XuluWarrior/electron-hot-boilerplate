@@ -13,7 +13,7 @@ function createWindow () {
     mainWindow.loadURL('file://' + __dirname + '/src/index.html');
     mainWindow.webContents.openDevTools();
   } else {
-    mainWindow.loadURL('file://' + __dirname + '/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/dist/index.html');
   }
 
   mainWindow.on('closed', function() {

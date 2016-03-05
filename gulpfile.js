@@ -34,3 +34,5 @@ gulp.task('css', function () {
     return gulp.src('./assets/main.css')
         .pipe(gulp.dest('dist'));
 });
+
+gulp.task('default', ['html', 'css', 'bundle']);

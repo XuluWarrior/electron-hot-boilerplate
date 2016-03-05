@@ -7,7 +7,8 @@
     "jsx": "jsx -x jsx src/ out/",
     "start": "cross-env NODE_ENV=development electron main.js",
     "test": "mocha --use_strict",
-    "build": "browserify -t reactify --node --no-bundle-external src/index.js -o out/bundle.js"
+    "build": "browserify -t reactify --node --no-bundle-external src/index.js -o out/bundle.js",
+    "package": "electron-packager . RetroJs --overwrite --platform=darwin --arch=x64 --version=0.36.9 --asar=false --prune --ignore='src' --ignore='release' --ignore='test' --out=release"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "cross-env": "^1.0.7",
+    "electron-packager": "^5.2.1",
     "electron-prebuilt": "^0.36.0",
     "enzyme": "^2.0.0",
     "escodegen": "^1.8.0",
