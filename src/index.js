@@ -1,26 +1,11 @@
 require('jsx-hook')({harmony: true});
 
-const React = require('react');
-const ReactDOM = require('react-dom');
 const App = require('./App.jsx');
+const hotRender = require('./electron-hot/hotRender');
 
 const watchGlob = require('watch-glob');
 
-const createProxy = require('./proxy/index');
-const deepForceUpdate = require('react-deep-force-update');
-
-const proxy = createProxy.default(App);
-const Proxy = proxy.get();
-
-var rootInstance = ReactDOM.render(React.createElement(Proxy), document.getElementById('root'));
-
-watchGlob(['src/**/*.jsx'], {callbackArg: 'absolute'}, f => {
-    console.log(f);
-    delete require.cache[require.resolve(f)];
-    var newCompo = require(f);
-    proxy.update(newCompo);
-    deepForceUpdate(rootInstance);
-});
+hotRender(App, document.getElementById('root'));
 
 watchGlob(['assets/**/*.css'], {callbackArg: 'absolute'}, f => {
     console.log(f);
