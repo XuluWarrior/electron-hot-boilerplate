@@ -1,5 +1,7 @@
 const createProxy = require('react-proxy/modules/index');
 
+global.proxies = {};
+
 module.exports = function register(Component, location) {
     const proxy = createProxy.default(Component);
 

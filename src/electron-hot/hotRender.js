@@ -2,11 +2,12 @@
 
 const watchGlob = require('watch-glob');
 
-const createProxy = require('react-proxy/modules/index');
 const deepForceUpdate = require('react-deep-force-update');
 
 const React = require('react');
 const ReactDOM = require('react-dom');
+
+const register = require('./register');
 
 module.exports = {
     render,
@@ -16,13 +17,8 @@ module.exports = {
 let rootInstance;
 
 function render(rootComponent, rootEl) {
-    const proxy = createProxy.default(rootComponent);
-    const Proxy = proxy.get();
-    global.proxies = {
-        '/Users/geowarin/dev/node-harmony/retro-js/src/ui/App.jsx': proxy
-    };
-
-    rootInstance = ReactDOM.render(React.createElement(Proxy), rootEl);
+    const proxy = register(rootComponent, '/Users/geowarin/dev/node-harmony/retro-js/src/ui/App.jsx');
+    rootInstance = ReactDOM.render(React.createElement(proxy), rootEl);
 }
 
 function watch(directories, options) {
