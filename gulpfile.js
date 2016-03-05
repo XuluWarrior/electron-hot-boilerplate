@@ -6,6 +6,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var reactify = require('reactify');
+var processhtml = require('gulp-processhtml');
 
 gulp.task('bundle', function () {
     var b = browserify({
@@ -21,4 +22,15 @@ gulp.task('bundle', function () {
         .pipe(buffer())
         .on('error', gutil.log)
         .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('html', function () {
+    return gulp.src('./src/index.html')
+        .pipe(processhtml())
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('css', function () {
+    return gulp.src('./assets/main.css')
+        .pipe(gulp.dest('dist'));
 });
