@@ -1,6 +1,6 @@
-require('jsx-hook')({harmony: true});
+//require('jsx-hook')({harmony: false});
 
-const App = require('./App.jsx');
+const App = require('./ui/App.jsx');
 const hotRender = require('./electron-hot/hotRender');
 const hotCss = require('./electron-hot/hotCss');
 
