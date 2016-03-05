@@ -1,6 +1,19 @@
 
 var installed = false;
 
+module.exports = {
+  install,
+  transform
+};
+
+function transform(source, options) {
+  var jstransform = require('jstransform/simple');
+  var instrument = require('./instrument');
+
+  var content = jstransform.transform(source, options).code;
+  return instrument(content);
+}
+
 function install(options) {
   if (installed) {
     return
@@ -9,8 +22,6 @@ function install(options) {
   var fs = require('fs');
   var Module = require('module');
   var _require = Module.prototype.require;
-  var jstransform = require('jstransform/simple');
-  var instrument = require('./instrument');
 
   if ('string' === typeof options) {
     options = {
@@ -25,10 +36,9 @@ function install(options) {
       options.react = true
     }
 
-    var content = fs.readFileSync(filename, 'utf8')
+    var content = fs.readFileSync(filename, 'utf8');
     try {
-      content = jstransform.transform(content, options).code
-      const instrumented = instrument(content);
+      var instrumented = transform(content, options);
       module._compile(instrumented, filename)
     } catch (e) {
       console.error("Error compiling " + filename, e)
@@ -44,5 +54,3 @@ function install(options) {
 
   installed = true
 }
-
-module.exports = install;

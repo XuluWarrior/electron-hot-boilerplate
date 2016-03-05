@@ -1,4 +1,4 @@
-require('./electron-hot/jsxTransform')();
+require('./electron-hot/jsxTransform').install();
 
 const electronHot = require('./electron-hot');
 
