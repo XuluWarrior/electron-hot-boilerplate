@@ -1,8 +1,8 @@
-require('./electron-hot/jsxTransform')({harmony: false});
+require('./electron-hot/jsxTransform')();
 
 const App = require('./ui/App.jsx');
-const hotRender = require('./electron-hot/hotRender');
-const hotCss = require('./electron-hot/hotCss');
+const electronHot = require('./electron-hot');
 
-hotRender(App, document.getElementById('root'));
-hotCss();
+electronHot.hotRender.render(App, document.getElementById('root'));
+electronHot.hotRender.watch(['src/**/*.jsx']);
+electronHot.hotCss(['assets/**/*.css']);

@@ -1,7 +1,9 @@
 const watchGlob = require('watch-glob');
 
-module.exports = function hotCss() {
-    watchGlob(['assets/**/*.css'], {callbackArg: 'absolute'}, f => {
+module.exports = function hotCss(directories, options) {
+
+    const opts = Object.assign({}, options, {callbackArg: 'absolute'});
+    watchGlob(directories, opts, f => {
         console.log(f);
         var links = document.getElementsByTagName('link');
         for (var i = 0; i < links.length; i++) {

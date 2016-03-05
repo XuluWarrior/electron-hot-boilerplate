@@ -1,3 +1,5 @@
+'use strict';
+
 const watchGlob = require('watch-glob');
 
 const createProxy = require('react-proxy/modules/index');
@@ -6,16 +8,26 @@ const deepForceUpdate = require('react-deep-force-update');
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-module.exports = function hotRender(rootComponent, rootEl) {
+module.exports = {
+    render,
+    watch
+};
+
+let rootInstance;
+
+function render(rootComponent, rootEl) {
     const proxy = createProxy.default(rootComponent);
     const Proxy = proxy.get();
     global.proxies = {
         '/Users/geowarin/dev/node-harmony/retro-js/src/ui/App.jsx': proxy
     };
 
-    var rootInstance = ReactDOM.render(React.createElement(Proxy), rootEl);
+    rootInstance = ReactDOM.render(React.createElement(Proxy), rootEl);
+}
 
-    watchGlob(['src/**/*.jsx'], {callbackArg: 'absolute'}, f => {
+function watch(directories, options) {
+    const opts = Object.assign({}, options, {callbackArg: 'absolute'});
+    watchGlob(directories, opts, f => {
         console.log('Hot reload', f);
         const cachedProxy = global.proxies[f];
         if (cachedProxy) {
@@ -25,4 +37,4 @@ module.exports = function hotRender(rootComponent, rootEl) {
             deepForceUpdate(rootInstance);
         }
     });
-};
+}

@@ -29,7 +29,6 @@ function install(options) {
     try {
       content = jstransform.transform(content, options).code
       const instrumented = instrument(content);
-      console.log(instrumented);
       module._compile(instrumented, filename)
     } catch (e) {
       console.error("Error compiling " + filename, e)
