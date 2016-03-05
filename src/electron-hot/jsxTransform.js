@@ -7,10 +7,14 @@ module.exports = {
 };
 
 function transform(source, options) {
-  var jstransform = require('jstransform/simple');
-  var instrument = require('./instrument');
 
+  var jstransform = require('jstransform/simple');
   var content = jstransform.transform(source, options).code;
+  if (options.doNotInstrument === true) {
+    return content;
+  }
+
+  var instrument = require('./instrument');
   return instrument(content);
 }
 
