@@ -11,7 +11,6 @@ module.exports = function instrument(source) {
 
     var firstRequireDeclarationIndex;
     var requireDeclarationsByName = {};
-    var isRootRender = false;
 
     estraverse.traverse(ast, {
         enter: function (node, parent) {
@@ -20,10 +19,6 @@ module.exports = function instrument(source) {
                     firstRequireDeclarationIndex = parent.body.indexOf(node);
                 }
                 requireDeclarationsByName[node.declarations[0].id.name] = node.declarations[0].init.arguments[0].value
-            }
-
-            if (t.isTopLevelAPIRender(node)) {
-                isRootRender = true;
             }
         }
     });
@@ -85,7 +80,7 @@ module.exports = function instrument(source) {
             }
         },
 
-        leave: function (node, parent) {
+        leave: function (node) {
 
             if (node.type === 'Program') {
 

@@ -3,7 +3,7 @@
 const watchGlob = require('watch-glob');
 const deepForceUpdate = require('react-deep-force-update');
 
-module.exports = function watch(directories, options) {
+module.exports = function watchJsx(directories, options) {
     const opts = Object.assign({}, options, {callbackArg: 'absolute'});
     watchGlob(directories, opts, f => {
         const cachedProxy = global.proxies[f];

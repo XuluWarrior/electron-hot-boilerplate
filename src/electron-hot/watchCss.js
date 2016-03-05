@@ -1,6 +1,6 @@
 const watchGlob = require('watch-glob');
 
-module.exports = function hotCss(directories, options) {
+module.exports = function watchCss(directories, options) {
 
     const opts = Object.assign({}, options, {callbackArg: 'absolute'});
     watchGlob(directories, opts, f => {
