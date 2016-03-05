@@ -20,7 +20,7 @@
     "tutorial"
   ],
   "author": "GitHub",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/geowarin/electron-hot-boilerplate/issues"
   },
@@ -28,7 +28,7 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "cross-env": "^1.0.7",
-    "electron-hot-loader": "geowarin/electron-hot-loader",
+    "electron-hot-loader": "0.1.1",
     "electron-packager": "^5.2.1",
     "electron-prebuilt": "^0.36.0",
     "enzyme": "^2.0.0",
