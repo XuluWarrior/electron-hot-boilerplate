@@ -4,29 +4,33 @@ const esprima = require('esprima');
 const estraverse = require('estraverse');
 const escodegen = require('escodegen');
 var t = require('./nodeTypes');
-
+var requireRegister = require.resolve('./register');
 
 module.exports = function instrument(source) {
     var ast = esprima.parse(source);
 
+    var firstRequireDeclarationIndex;
     var requireDeclarationsByName = {};
     estraverse.traverse(ast, {
-        enter: function (node) {
+        enter: function (node, parent) {
             if (t.isRequireDeclaration(node)) {
+                if (!firstRequireDeclarationIndex) {
+                    firstRequireDeclarationIndex = parent.body.indexOf(node);
+                }
                 requireDeclarationsByName[node.declarations[0].id.name] = node.declarations[0].init.arguments[0].value
             }
         }
     });
 
     estraverse.replace(ast, {
-        enter: function (node, parent) {
+        enter: function (node) {
 
             if (t.isCreateElementCall(node)) {
 
                 var wrapperTemplate = esprima.parse(
                     [
                         'React.createElement(' +
-                        '   register(COMPONENT_ARG, RESOLVE_ARG))'
+                        '   register__(COMPONENT_ARG, RESOLVE_ARG))'
                     ].join('')
                 );
 
@@ -48,20 +52,18 @@ module.exports = function instrument(source) {
                 this.skip();
                 return retNode;
             }
-        }
+        },
 
-        //leave: function (node, parent) {
-        //
-        //    if (node.type === 'Program') {
-        //
-        //        var beforeChunk = esprima.parse(
-        //            'var ComponentWrapper__DDL = require("!jsx-loader!component-flow-loader/runtime_components/component_wrapper.js");'
-        //        );
-        //
-        //        node.body.unshift(beforeChunk);
-        //        return node;
-        //    }
-        //}
+        leave: function (node, parent) {
+
+            if (node.type === 'Program') {
+
+                var beforeChunk = esprima.parse('var register__ = require("' + requireRegister + '");');
+
+                node.body.splice(firstRequireDeclarationIndex, 0, beforeChunk);
+                return node;
+            }
+        }
     });
 
     return escodegen.generate(ast);
