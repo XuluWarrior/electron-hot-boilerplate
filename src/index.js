@@ -1,4 +1,4 @@
-//require('jsx-hook')({harmony: false});
+require('./electron-hot/jsxTransform')({harmony: false});
 
 const App = require('./ui/App.jsx');
 const hotRender = require('./electron-hot/hotRender');

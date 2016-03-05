@@ -25,6 +25,10 @@
   "homepage": "https://github.com/atom/electron-quick-start#readme",
   "devDependencies": {
     "electron-prebuilt": "^0.36.0",
+    "escodegen": "^1.8.0",
+    "esprima": "^2.7.2",
+    "estraverse": "^4.1.1",
+    "jstransform": "^11.0.3",
     "react-deep-force-update": "^2.0.1",
     "watch-glob": "^0.1.3"
   },
