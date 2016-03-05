@@ -4,5 +4,5 @@ const electronHot = require('./electron-hot');
 
 require('./index.jsx');
 
-electronHot.hotRender.watch(['src/**/*.jsx']);
-electronHot.hotCss(['assets/**/*.css']);
+electronHot.watchJsx(['src/**/*.jsx']);
+electronHot.watchCss(['assets/**/*.css']);
