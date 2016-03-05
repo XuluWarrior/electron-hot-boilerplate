@@ -1,6 +1,6 @@
 const watchGlob = require('watch-glob');
 
-const createProxy = require('../proxy/index');
+const createProxy = require('react-proxy/modules/index');
 const deepForceUpdate = require('react-deep-force-update');
 
 const React = require('react');

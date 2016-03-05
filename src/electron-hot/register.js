@@ -1,4 +1,4 @@
-const createProxy = require('../proxy/index');
+const createProxy = require('react-proxy/modules/index');
 
 module.exports = function register(Component, location) {
     const proxy = createProxy.default(Component);

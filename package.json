@@ -30,6 +30,7 @@
     "estraverse": "^4.1.1",
     "jstransform": "^11.0.3",
     "react-deep-force-update": "^2.0.1",
+    "react-proxy": "^2.0.3",
     "watch-glob": "^0.1.3"
   },
   "dependencies": {
