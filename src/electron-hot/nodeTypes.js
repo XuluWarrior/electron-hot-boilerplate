@@ -42,7 +42,7 @@ t.isTopLevelAPIRender = function(node) {
     return (
         node.type === 'CallExpression' &&
         node.callee.type === 'MemberExpression' &&
-        node.callee.object.name === 'React' &&
+        (node.callee.object.name === 'React' || node.callee.object.name === 'ReactDOM') &&
         node.callee.property.name === 'render'
     );
 };
