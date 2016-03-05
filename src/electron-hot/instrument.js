@@ -9,6 +9,15 @@ var t = require('./nodeTypes');
 module.exports = function instrument(source) {
     var ast = esprima.parse(source);
 
+    var requireDeclarationsByName = {};
+    estraverse.traverse(ast, {
+        enter: function (node) {
+            if (t.isRequireDeclaration(node)) {
+                requireDeclarationsByName[node.declarations[0].id.name] = node.declarations[0].init.arguments[0].value
+            }
+        }
+    });
+
     estraverse.replace(ast, {
         enter: function (node, parent) {
 
@@ -23,13 +32,20 @@ module.exports = function instrument(source) {
 
                 var retNode = wrapperTemplate.body[0].expression;
 
+                const componentArg = node.arguments[0];
+                const requireDeclaration = requireDeclarationsByName[componentArg.name];
+                if (!requireDeclaration) {
+                    console.warn("Could not find a require declaration for the component " + componentArg.name);
+                    return node;
+                }
+
                 // change COMPONENT_ARG
-                retNode.arguments[0].arguments[0] = node.arguments[0];
-                retNode.arguments[0].arguments[1] = esprima.parse("require.resolve('./Component.jsx')").body[0].expression;
+                retNode.arguments[0].arguments[0] = componentArg;
+                // RESOLVE_ARG
+                retNode.arguments[0].arguments[1] = esprima.parse("require.resolve('" + requireDeclaration + "')").body[0].expression;
 
                 //Prevent further traversal and ComponentWrapper wrapping
                 this.skip();
-                console.log(retNode);
                 return retNode;
             }
         }

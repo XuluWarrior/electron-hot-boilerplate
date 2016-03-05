@@ -15,6 +15,18 @@ t.isComponentDeclaration = function(node) {
     );
 };
 
+t.isRequireDeclaration = function(node) {
+    return (
+        node.type === 'VariableDeclaration' &&
+        node.declarations[0] &&
+        node.declarations[0].type === 'VariableDeclarator' &&
+        node.declarations[0].init &&
+        node.declarations[0].init.type === 'CallExpression' &&
+        node.declarations[0].init.callee.type === 'Identifier' &&
+        node.declarations[0].init.callee.name === 'require'
+    );
+};
+
 //Matches on React.createElement(SomeCustomELement, ......)
 t.isCreateElementCall = function(node) {
     return (
