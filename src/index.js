@@ -1,6 +1,6 @@
 if (process.env.NODE_ENV === 'development') {
-    require('electron-hot-loader').install();
     const electronHot = require('electron-hot-loader');
+    electronHot.install();
     electronHot.watchJsx(['src/**/*.jsx']);
     electronHot.watchCss(['src/assets/**/*.css']);
 }
