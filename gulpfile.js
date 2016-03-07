@@ -6,8 +6,12 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var reactify = require('reactify');
+var minifyify = require('minifyify');
 var processhtml = require('gulp-processhtml');
 var del = require('del');
+
+var gulpUglify = require('gulp-uglify/minifier');
+var uglifyJS = require('uglify-js');
 
 gulp.task('clean', function (cb) {
     del(['dist', 'release'], cb);
@@ -25,7 +29,7 @@ gulp.task('bundle', function () {
     return b.bundle()
         .pipe(source('app.js'))
         .pipe(buffer())
-        .on('error', gutil.log)
+        .pipe(gulpUglify({}, uglifyJS))
         .pipe(gulp.dest('./dist/'));
 });
 
