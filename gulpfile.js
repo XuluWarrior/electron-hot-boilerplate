@@ -7,7 +7,6 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var reactify = require('reactify');
 var envify = require('envify/custom');
-var processhtml = require('gulp-processhtml');
 var del = require('del');
 
 var gulpUglify = require('gulp-uglify/minifier');
@@ -29,7 +28,7 @@ gulp.task('bundle', function () {
     });
 
     return b.bundle()
-        .pipe(source('app.js'))
+        .pipe(source('index.js'))
         .pipe(buffer())
         .pipe(gulpUglify({}, uglifyJS))
         .pipe(gulp.dest('./dist/'));
@@ -37,7 +36,6 @@ gulp.task('bundle', function () {
 
 gulp.task('html', function () {
     return gulp.src('./src/index.html')
-        .pipe(processhtml())
         .pipe(gulp.dest('dist'));
 });
 
