@@ -7,6 +7,11 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var reactify = require('reactify');
 var processhtml = require('gulp-processhtml');
+var del = require('del');
+
+gulp.task('clean', function (cb) {
+    del(['dist', 'release'], cb);
+});
 
 gulp.task('bundle', function () {
     var b = browserify({
