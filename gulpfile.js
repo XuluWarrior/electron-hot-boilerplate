@@ -41,9 +41,9 @@ gulp.task('html', function () {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('css', function () {
-    return gulp.src('./assets/main.css')
+gulp.task('assets', function () {
+    return gulp.src('./src/assets/**/*', { "base" : "./src" })
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['html', 'css', 'bundle']);
+gulp.task('default', ['html', 'assets', 'bundle']);
