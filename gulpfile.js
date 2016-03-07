@@ -6,7 +6,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var reactify = require('reactify');
-var minifyify = require('minifyify');
+var envify = require('envify/custom');
 var processhtml = require('gulp-processhtml');
 var del = require('del');
 
@@ -23,7 +23,9 @@ gulp.task('bundle', function () {
         debug: false,
         node: true,
         bundleExternal: false,
-        transform: [reactify]
+        transform: [reactify, envify({
+            NODE_ENV: 'production'
+        })]
     });
 
     return b.bundle()
