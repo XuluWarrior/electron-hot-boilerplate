@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development electron main.js",
-    "test": "mocha --use_strict",
+    "test": "mocha",
     "clean": "gulp clean",
     "build": "gulp",
     "pack": "electron-packager . RetroJs --overwrite --platform=darwin --arch=x64 --version=0.36.9 --asar=false --prune --ignore='src' --ignore='release' --ignore='test' --out=release",
@@ -31,7 +31,7 @@
     "browserify": "^13.0.0",
     "cross-env": "^1.0.7",
     "del": "^2.2.0",
-    "electron-hot-loader": "0.1.1",
+    "electron-hot-loader": "0.2.0",
     "electron-packager": "^5.2.1",
     "electron-prebuilt": "^0.36.0",
     "envify": "^3.4.0",

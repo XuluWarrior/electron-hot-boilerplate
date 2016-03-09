@@ -1,3 +1,5 @@
+"use strict";
+
 const expect = require('expect');
 const enzyme = require('enzyme');
 const React = require('react');
