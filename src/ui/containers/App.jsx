@@ -2,7 +2,7 @@
 
 const React = require('react');
 const connect = require('react-redux').connect;
-const Counter = require('../components/Counter');
+const Counter = require('../components/Counter.jsx');
 const increment = require('../../actions/counterActions').increment;
 
 module.exports = connect(
