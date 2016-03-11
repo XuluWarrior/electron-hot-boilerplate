@@ -50,7 +50,8 @@
     "redux": "^3.3.1",
     "uglify-js": "mishoo/UglifyJS2#harmony",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "watch-glob": "^0.1.3"
   },
   "dependencies": {
     "react": "^0.14.7",
