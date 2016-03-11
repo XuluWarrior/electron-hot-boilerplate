@@ -13,3 +13,5 @@ Since [version 0.5.0](https://github.com/geowarin/electron-hot-loader/releases),
 a mechanism to watch higher-order components.
 
 Check out [the redux branch](https://github.com/geowarin/electron-hot-boilerplate/tree/redux) for a demo, with reducers hot reloading!
+
+![Redux demo](http://i.imgur.com/szBDlIA.gif)
