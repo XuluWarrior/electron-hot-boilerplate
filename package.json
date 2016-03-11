@@ -45,7 +45,9 @@
     "react-addons-test-utils": "^0.14.7",
     "react-deep-force-update": "^2.0.1",
     "react-proxy": "^2.0.3",
+    "react-redux": "^4.4.0",
     "reactify": "^1.1.1",
+    "redux": "^3.3.1",
     "uglify-js": "mishoo/UglifyJS2#harmony",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
