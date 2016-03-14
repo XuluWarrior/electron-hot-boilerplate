@@ -2,8 +2,8 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const App = require('./ui/containers/App.jsx');
 
-const Provider = require('react-redux').Provider;
-const createStore = require('redux').createStore;
+const {Provider} = require('react-redux');
+const {createStore} = require('redux');
 
 const counter = require('./reducer/counter');
 
@@ -18,6 +18,8 @@ if (process.env.NODE_ENV === 'development') {
     });
 }
 
-ReactDOM.render(<Provider store={store}>
-    <App />
-</Provider>, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root'));

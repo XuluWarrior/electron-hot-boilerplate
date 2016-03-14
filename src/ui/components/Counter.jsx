@@ -10,4 +10,4 @@ module.exports = class Counter extends React.Component {
             <button onClick={this.props.increment}>Increment</button>
         </div>
     }
-}
+};

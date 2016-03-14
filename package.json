@@ -8,7 +8,7 @@
     "test": "mocha",
     "clean": "gulp clean",
     "build": "gulp",
-    "pack": "electron-packager . RetroJs --overwrite --platform=darwin --arch=x64 --version=0.36.9 --asar=false --prune --ignore='src' --ignore='release' --ignore='test' --out=release",
+    "pack": "electron-packager . RetroJs --overwrite --platform=darwin --arch=x64 --version=0.37.1 --asar=false --prune --ignore='src' --ignore='release' --ignore='test' --out=release",
     "package": "npm-run-all clean build pack"
   },
   "repository": {
@@ -31,9 +31,9 @@
     "browserify": "^13.0.0",
     "cross-env": "^1.0.7",
     "del": "^2.2.0",
-    "electron-hot-loader": "0.5.0",
+    "electron-hot-loader": "0.6.1",
     "electron-packager": "^5.2.1",
-    "electron-prebuilt": "^0.36.0",
+    "electron-prebuilt": "^0.37.1",
     "envify": "^3.4.0",
     "enzyme": "^2.0.0",
     "expect": "^1.14.0",
