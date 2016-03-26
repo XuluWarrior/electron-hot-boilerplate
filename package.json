@@ -31,7 +31,7 @@
     "browserify": "^13.0.0",
     "cross-env": "^1.0.7",
     "del": "^2.2.0",
-    "electron-hot-loader": "0.6.1",
+    "electron-hot-loader": "*",
     "electron-packager": "^5.2.1",
     "electron-prebuilt": "^0.37.1",
     "envify": "^3.4.0",
