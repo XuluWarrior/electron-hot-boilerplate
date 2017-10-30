@@ -9,8 +9,9 @@ var reactify = require('reactify');
 var envify = require('envify/custom');
 var del = require('del');
 
-var gulpUglify = require('gulp-uglify/minifier');
-var uglifyJS = require('uglify-js');
+const uglifyJS = require('uglify-es');
+const uglifyComposer = require('gulp-uglify/composer');
+const minify = uglifyComposer(uglifyJS);
 
 gulp.task('clean', function (cb) {
     del(['dist', 'release'], cb);
@@ -30,7 +31,7 @@ gulp.task('bundle', function () {
     return b.bundle()
         .pipe(source('index.js'))
         .pipe(buffer())
-        .pipe(gulpUglify({}, uglifyJS))
+        .pipe(minify({}))
         .pipe(gulp.dest('./dist/'));
 });
 
